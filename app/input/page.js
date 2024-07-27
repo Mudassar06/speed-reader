@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import InputBox from '@/components/InputBox';
 
-const page = () => {
+const Home = () => {
   const router = useRouter();
   const [inputText, setInputText] = useState("");
   const[arr, setArr] = useState([]);
@@ -25,4 +25,4 @@ const page = () => {
   );
 };
 
-export default page
+export default Home;
