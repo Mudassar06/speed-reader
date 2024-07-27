@@ -1,95 +1,47 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client"
+
+import Box from '../components/Textbox';
+import React, { useState } from 'react';
+
+const words = [
+  "apple", "banana", "cherry", "date", "elderberry", "fig", "grape", "honeydew",
+  "kiwi", "lemon", "mango", "nectarine", "orange", "papaya", "quince", "raspberry",
+  "strawberry", "tangerine", "ugli", "vanilla", "watermelon", "xigua", "yellowfruit",
+  "zucchini", "apricot", "blackberry", "blueberry", "cantaloupe", "dragonfruit",
+  "eggplant", "gooseberry", "jackfruit", "kumquat", "lime", "lychee", "mandarin",
+  "mulberry", "olive", "peach", "pear", "persimmon", "pineapple", "plum", "pomegranate",
+  "pumpkin", "starfruit", "tomato", "yam", "zebrafruit"
+];
 
 export default function Home() {
+
+  const [inputValue, setInputValue] = useState(0);
+
+  const handleChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const [word, setWord] = useState("Start!");
+
+  const run = () => {
+    words.forEach((w, index) => {
+      setTimeout(() => setWord(w), index * 60000/inputValue);
+    });
+  };
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <div className='bg' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#f0f0f0' }}>
+      <Box word={word} />
+      <input
+        id="inputField"
+        type="text"
+        value={inputValue}
+        onChange={handleChange}
+        placeholder='Enter wpm'
+        style={{ marginBottom: '10px', padding: '8px', width: '200px' }}
+      />
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      <button onClick={run}>Start</button>
+    </div>
   );
 }
