@@ -9,6 +9,7 @@ const Home = () => {
   const [inputText, setInputText] = useState("");
   const [arr, setArr] = useState([]);
   const array = useStore((state) => state.array);
+  const setArray = useStore((state) => state.setArray);
 
   const handleSubmit = () => {
     const newarr = inputText.split(' ');
