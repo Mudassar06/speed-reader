@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 
-
 .textbox {
   width: 300px; 
   height: 200px;
@@ -35,7 +34,6 @@
   font-size: inherit; 
 }
 
-
 .word {
   font-size: 24px; 
   color: #000000; 
@@ -46,4 +44,70 @@
   width: 400px;
   height: 400px;
   background-color: #000000;
+}
+
+.bg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .textbox {
+    width: 90%;
+    height: auto;
+    padding: 20px;
+  }
+
+  .inputbox {
+    width: 90%;
+    height: auto;
+    padding: 15px;
+  }
+
+  .word {
+    font-size: 22px;
+  }
+
+  .button {
+    width: 90%;
+    height: auto;
+    padding: 20px;
+  }
+
+  .bg {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .textbox {
+    width: 66%;
+    height: auto;
+    padding: 20px;
+  }
+
+  .inputbox {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+  }
+
+  .word {
+    font-size: 20px;
+  }
+
+  .button {
+    width: 95%;
+    height: auto;
+    padding: 20px;
+  }
+
+  .bg {
+    padding: 5px;
+  }
 }
