@@ -2,23 +2,11 @@
 
 import Box from '@/components/Textbox';
 import React, { useState, useEffect } from 'react';
+import useStore from '@/store/store';
 
 export default function Home() {
-
+    const array = useStore((state) => state.array);
     const [inputValue, setInputValue] = useState(0);
-    const [arrayData, setArrayData] = useState([]);
-
-    useEffect(() => {
-        const urlSearchParams = new URLSearchParams(window.location.search);
-        const dataParam = urlSearchParams.get('arr');
-        if (dataParam) {
-            try {
-                setArrayData(JSON.parse(decodeURIComponent(dataParam)));
-            } catch (error) {
-                console.error('Failed to parse data:', error);
-            }
-        }
-    }, []);
 
     const handleChange = (event) => {
         setInputValue(event.target.value);
@@ -27,19 +15,18 @@ export default function Home() {
     const [word, setWord] = useState("Start!");
 
     const run = () => {
-        let cumulativeDelay = 0; 
-    
-        arrayData.forEach((w, index) => {
-          let delay = 60000 / inputValue;
-    
-          if (w.charAt(w.length - 1) === "." || w.charAt(w.length - 1) === ",") {
-            delay += 300;
-          }
-    
-          setTimeout(() => setWord(w), cumulativeDelay);
-          cumulativeDelay += delay;
+        let cumulativeDelay = 0;
+        array.forEach((w, index) => {
+            let delay = 60000 / inputValue;
+            if (w.charAt(w.length - 1) === "." || w.charAt(w.length - 1) === ",") {
+                delay += 300;
+            }
+
+            setTimeout(() => setWord(w), cumulativeDelay);
+            cumulativeDelay += delay;
         });
-      };
+    };
+
 
     return (
         <div className='bg' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#f0f0f0' }}>

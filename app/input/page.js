@@ -2,18 +2,19 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import InputBox from '@/components/InputBox';
+import useStore from '@/store/store';
 
 const Home = () => {
   const router = useRouter();
   const [inputText, setInputText] = useState("");
-  const[arr, setArr] = useState([]);
+  const [arr, setArr] = useState([]);
+  const array = useStore((state) => state.array);
 
   const handleSubmit = () => {
-    console.log(inputText);
     const newarr = inputText.split(' ');
-    setArr(newarr);
-    console.log(newarr);
-    router.push(`/speedread?arr=${encodeURIComponent(JSON.stringify(newarr))}`);
+    setArray(newarr);
+    router.push('/speedread');
+
   };
 
   return (
